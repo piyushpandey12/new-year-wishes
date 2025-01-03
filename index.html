@@ -9,18 +9,22 @@
 <body>
     <div class="container">
         <div class="countdown-wrapper">
-            <p class="time-left-label">Time Left Until Next Year:</p>
+            <p class="time-left-label">Time Left Until New Year:</p>
             <div id="countdown" class="countdown"></div>
         </div>
         <div class="year-transition">
             <span>202</span>
             <div class="changing-digit">
-                <span id="digit4" class="digit up"></span>
-                <span id="digit5" class="digit down"></span>
+                <span id="digit4" class="digit up">4</span>
+                <span id="digit5" class="digit down">5</span>
             </div>
         </div>
-        <h1 class="greeting">🎉 Happy New Year! 🎉</h1>
+        <h1 class="greeting">🎉 Happy New Year <span id="newYearText">2026</span>! 🎉</h1>
+        <p id="quote" class="new-year-quote">"Cheers to a new year and another chance for us to get it right!"</p>
+        <button id="fireworkBtn">Start Fireworks</button>
+        <div id="fireworks-container"></div>
     </div>
+    <div id="author">Created by Piyush Pandey</div>
     <script src="script.js"></script>
 </body>
 </html>
