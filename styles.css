@@ -16,7 +16,20 @@ body {
     position: relative;
 }
 
+.countdown-wrapper {
+    margin-bottom: 20px;
+}
 
+.time-left-label {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #f1c40f;
+}
+
+.countdown {
+    font-size: 2rem;
+    font-weight: bold;
+}
 
 .year-transition {
     font-size: 5rem;
