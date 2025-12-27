@@ -1,158 +1,185 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
 body {
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(120deg, #000428, #004e92);
-    color: white;
-    overflow: hidden;
-    transition: background 1s ease-in-out;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  color: white;
+  overflow: hidden;
 }
 
+/* ================= BACKGROUND VIDEO ================= */
+#bgVideo {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -3;
+}
+
+/* ================= VIDEO OVERLAY ================= */
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: -2;
+}
+
+/* ================= MAIN CONTAINER ================= */
 .container {
-    text-align: center;
-    position: relative;
+  position: relative;
+  z-index: 5;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+/* ================= COUNTDOWN ================= */
 .countdown-wrapper {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .time-left-label {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #f1c40f;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #f1c40f;
 }
 
 .countdown {
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
+/* ================= YEAR DISPLAY ================= */
 .year-transition {
-    font-size: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 20px;
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 .year-transition span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .changing-digit {
-    position: relative;
-    width: 1em;
-    height: 1em;
-    overflow: hidden;
-    font-weight: bold;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  font-weight: bold;
 }
 
 .digit {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    transition: transform 1.5s ease-in-out;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transition: transform 1.5s ease-in-out;
 }
 
 .up {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .down {
-    transform: translateY(100%);
+  transform: translateY(100%);
 }
 
+/* ================= TEXT ================= */
 .greeting {
-    font-size: 2.5rem;
-    opacity: 0;
-    animation: fadeIn 2.5s ease-in-out forwards 1.5s;
+  font-size: 2.5rem;
+  opacity: 0;
+  animation: fadeIn 2.5s ease-in-out forwards 1.5s;
 }
 
 .new-year-quote {
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 20px;
 }
 
+/* ================= BUTTON ================= */
 button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    background-color: #ff007f;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ff007f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #ff4da6;
+  background-color: #ff4da6;
 }
 
+/* ================= FIREWORKS ================= */
 #fireworks-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
 }
 
 .firework {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 0 0 10px white;
-    animation: explode 1.5s ease-in-out forwards;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px white;
+  animation: explode 1.5s ease-in-out forwards;
 }
 
-#author {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f;
-    animation: glow 1.5s infinite alternate;
-}
-
+/* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes explode {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(3);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
 }
 
 @keyframes glow {
-    0% {
-        text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 15px #ff007f;
-    }
-    100% {
-        text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
-    }
+  0% {
+    text-shadow: 0 0 5px #ff007f,
+                 0 0 10px #ff007f,
+                 0 0 15px #ff007f;
+  }
+  100% {
+    text-shadow: 0 0 10px #ff007f,
+                 0 0 20px #ff007f,
+                 0 0 30px #ff007f;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+  .year-transition {
+    font-size: 3.5rem;
+  }
+
+  .greeting {
+    font-size: 1.8rem;
+  }
 }

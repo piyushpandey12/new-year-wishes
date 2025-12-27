@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy New Year Countdown</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="countdown-wrapper">
-            <p class="time-left-label">Time Left Until New Year:</p>
-            <div id="countdown" class="countdown"></div>
-        </div>
-        <div class="year-transition">
-            <span>202</span>
-            <div class="changing-digit">
-                <span id="digit4" class="digit up">4</span>
-                <span id="digit5" class="digit down">5</span>
-            </div>
-        </div>
-        <h1 class="greeting">🎉 Happy New Year <span id="newYearText">2024</span>! 🎉</h1>
-        <p id="quote" class="new-year-quote">"Cheers to a new year and another chance for us to get it right!"</p>
-        <button id="fireworkBtn">Start Fireworks</button>
-        <div id="fireworks-container"></div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy New Year Countdown</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- 🎥 Background Video -->
+  <video id="bgVideo" autoplay muted loop playsinline>
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+
+  <div class="container">
+    <div class="countdown-wrapper">
+      <p class="time-left-label">Time Left Until New Year:</p>
+      <div id="countdown" class="countdown"></div>
+    </div>
+
+    <div class="year-transition">
+      <span>202</span>
+      <div class="changing-digit">
+        <span id="digit4" class="digit up">4</span>
+        <span id="digit5" class="digit down">5</span>
+      </div>
+    </div>
+
+    <h1 class="greeting">
+      🎉 Happy New Year <span id="newYearText">2025</span>! 🎉
+    </h1>
+
+    <p id="quote" class="new-year-quote">
+      "Cheers to a new year and another chance for us to get it right!"
+    </p>
+
+
+    <div id="fireworks-container"></div>
+  </div>
+
+  <!-- 🔊 New Year Sound -->
+  <audio id="newYearSound" preload="auto">
+    <source src="newyear.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
