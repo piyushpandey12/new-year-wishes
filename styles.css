@@ -145,8 +145,12 @@ button:hover {
 
 /* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes explode {
@@ -162,14 +166,10 @@ button:hover {
 
 @keyframes glow {
   0% {
-    text-shadow: 0 0 5px #ff007f,
-                 0 0 10px #ff007f,
-                 0 0 15px #ff007f;
+    text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 15px #ff007f;
   }
   100% {
-    text-shadow: 0 0 10px #ff007f,
-                 0 0 20px #ff007f,
-                 0 0 30px #ff007f;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
   }
 }
 
@@ -177,6 +177,16 @@ button:hover {
 @media (max-width: 600px) {
   .year-transition {
     font-size: 3.5rem;
+  }
+  #startBtn {
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: #00ffff;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    z-index: 9999;
   }
 
   .greeting {

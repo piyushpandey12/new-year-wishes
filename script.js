@@ -6,19 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const newYearText = document.getElementById("newYearText");
   const fireworksContainer = document.getElementById("fireworks-container");
   const bgMusic = document.getElementById("bgMusic");
+  const startBtn = document.getElementById("startBtn");
 
-  /* ---------------- MUSIC (AUTO AFTER INTERACTION) ---------------- */
-  const startMusic = () => {
+  /* ---------------- MUSIC (VERCEL SAFE) ---------------- */
+  startBtn.addEventListener("click", () => {
     bgMusic.volume = 0.7;
-    bgMusic.play().catch(() => {});
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("keydown", startMusic);
-    document.removeEventListener("touchstart", startMusic);
-  };
-
-  document.addEventListener("click", startMusic);
-  document.addEventListener("keydown", startMusic);
-  document.addEventListener("touchstart", startMusic);
+    bgMusic.play().catch(err => console.log("Audio error:", err));
+    startBtn.style.display = "none";
+  });
 
   /* ---------------- QUOTES ---------------- */
   const quotes = [
@@ -55,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       [Math.random() * 5 | 0];
   }
 
-  /* ---------------- AUTO FIREWORKS ON LOAD ---------------- */
   setTimeout(() => launchFireworks(30), 800);
 
   /* ---------------- COUNTDOWN ---------------- */
@@ -64,13 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const diff = targetDate - now;
 
     if (diff <= 0) {
-      // 🎉 MIDNIGHT EVENT
       currentYear++;
       newYearText.textContent = currentYear;
       quote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
       launchFireworks(80);
 
-      // Prepare next year
       targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
       return;
     }
@@ -81,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const s = Math.floor(diff / 1000) % 60;
 
     countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
-
-    digit4.style.transform = "translateY(-100%)";
-    digit5.style.transform = "translateY(0)";
   }
 
   setInterval(updateCountdown, 1000);
