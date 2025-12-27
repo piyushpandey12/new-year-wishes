@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,10 +9,20 @@
 
 <body>
 
+  <!-- 🔊 BACKGROUND MUSIC (USER INTERACTION REQUIRED) -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="/newyear.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ▶ START BUTTON (REQUIRED FOR VERCEL AUDIO) -->
+  <button id="startBtn">▶ Start Experience</button>
+
   <!-- 🎥 Background Video -->
   <video id="bgVideo" autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4">
   </video>
+
+  <div class="video-overlay"></div>
 
   <div class="container">
     <div class="countdown-wrapper">
@@ -36,20 +45,11 @@
     <p id="quote" class="new-year-quote">
       "Cheers to a new year and another chance for us to get it right!"
     </p>
-
-
-    <div id="fireworks-container"></div>
   </div>
 
-  <!-- 🔊 New Year Sound -->
-  <audio id="bgMusic" loop preload="auto">
-    <source src="/newyear.mp3" type="audio/mpeg">
-  </audio>
-
-  <button id="startBtn">▶ Start Experience</button>
-
+  <!-- 🎆 FIREWORKS -->
+  <div id="fireworks-container"></div>
 
   <script src="script.js"></script>
 </body>
-
 </html>

@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgMusic = document.getElementById("bgMusic");
   const startBtn = document.getElementById("startBtn");
 
-  /* ---------------- MUSIC (VERCEL SAFE) ---------------- */
+  /* ================= MUSIC (VERCEL SAFE) ================= */
   startBtn.addEventListener("click", () => {
     bgMusic.volume = 0.7;
     bgMusic.play().catch(err => console.log("Audio error:", err));
     startBtn.style.display = "none";
   });
 
-  /* ---------------- QUOTES ---------------- */
+  /* ================= QUOTES ================= */
   const quotes = [
     "Cheers to a new year and another chance for us to get it right!",
     "The best is yet to come. Happy New Year!",
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "May all your dreams come true in the next year!"
   ];
 
-  /* ---------------- DATE SETUP ---------------- */
+  /* ================= DATE SETUP ================= */
   let currentYear = new Date().getFullYear();
   let targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   digit4.textContent = Math.floor((currentYear % 100) / 10);
   digit5.textContent = currentYear % 10;
 
-  /* ---------------- FIREWORKS ---------------- */
+  /* ================= FIREWORKS ================= */
   function launchFireworks(count = 40) {
     for (let i = 0; i < count; i++) {
       const fw = document.createElement("div");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => launchFireworks(30), 800);
 
-  /* ---------------- COUNTDOWN ---------------- */
+  /* ================= COUNTDOWN ================= */
   function updateCountdown() {
     const now = new Date();
     const diff = targetDate - now;

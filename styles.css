@@ -1,11 +1,12 @@
 /* ================= RESET ================= */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 /* ================= BODY ================= */
 body {
-  margin: 0;
   font-family: "Courier New", Courier, monospace;
   color: white;
   overflow: hidden;
@@ -108,7 +109,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* ================= BUTTON ================= */
+/* ================= NORMAL BUTTON ================= */
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -124,6 +125,29 @@ button {
 button:hover {
   background-color: #ff4da6;
 }
+
+/* ================= START CLICK LAYER ================= */
+#startBtn {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0); /* fully transparent */
+  color: transparent;          /* hide text */
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optional hint text */
+#startBtn::after {
+  content: "Tap anywhere to start 🎶";
+  color: rgba(0, 255, 255, 0.05);
+  font-size: 20px;
+}
+
 
 /* ================= FIREWORKS ================= */
 #fireworks-container {
@@ -145,31 +169,22 @@ button:hover {
 
 /* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
 
 @keyframes explode {
-  0% {
+  from {
     transform: scale(1);
     opacity: 1;
   }
-  100% {
+  to {
     transform: scale(3);
     opacity: 0;
-  }
-}
-
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 15px #ff007f;
-  }
-  100% {
-    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
   }
 }
 
@@ -178,18 +193,12 @@ button:hover {
   .year-transition {
     font-size: 3.5rem;
   }
-  #startBtn {
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: #00ffff;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
-    z-index: 9999;
-  }
 
   .greeting {
     font-size: 1.8rem;
+  }
+
+  .new-year-quote {
+    font-size: 1.2rem;
   }
 }
