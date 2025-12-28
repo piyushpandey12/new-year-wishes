@@ -5,9 +5,16 @@
   box-sizing: border-box;
 }
 
+/* ================= GLOBAL ================= */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 /* ================= BODY ================= */
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: monospace; /* ✅ single font (no override) */
   color: white;
   overflow: hidden;
 }
@@ -59,12 +66,25 @@ body {
   font-weight: bold;
 }
 
-/* ================= YEAR DISPLAY (FULL YEAR) ================= */
+/* ================= YEAR DISPLAY (VERCEL FIXED) ================= */
 .year-transition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-size: 64px;
   font-weight: bold;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   margin: 20px 0;
+
+  white-space: nowrap;   /* 🔥 prevents wrapping */
+  flex-wrap: nowrap;     /* 🔥 Vercel production fix */
+  overflow: hidden;
+}
+
+#fullYear {
+  display: inline-block;
+  min-width: max-content; /* 🔥 critical */
 }
 
 /* ================= TEXT ================= */
