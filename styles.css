@@ -59,41 +59,12 @@ body {
   font-weight: bold;
 }
 
-/* ================= YEAR DISPLAY ================= */
+/* ================= YEAR DISPLAY (FULL YEAR) ================= */
 .year-transition {
-  font-size: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 64px;
+  font-weight: bold;
+  letter-spacing: 4px;
   margin: 20px 0;
-}
-
-.year-transition span {
-  font-weight: bold;
-}
-
-.changing-digit {
-  position: relative;
-  width: 1em;
-  height: 1em;
-  overflow: hidden;
-  font-weight: bold;
-}
-
-.digit {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  transition: transform 1.5s ease-in-out;
-}
-
-.up {
-  transform: translateY(0);
-}
-
-.down {
-  transform: translateY(100%);
 }
 
 /* ================= TEXT ================= */
@@ -109,7 +80,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* ================= NORMAL BUTTON ================= */
+/* ================= START BUTTON ================= */
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -119,35 +90,31 @@ button {
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 button:hover {
   background-color: #ff4da6;
 }
 
-/* ================= START CLICK LAYER ================= */
+/* ================= FULL SCREEN TAP LAYER ================= */
 #startBtn {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0); /* fully transparent */
-  color: transparent;          /* hide text */
+  background: rgba(0, 0, 0, 0.01);
+  color: transparent;
   border: none;
   cursor: pointer;
   z-index: 9999;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Optional hint text */
 #startBtn::after {
   content: "Tap anywhere to start 🎶";
-  color: rgba(0, 255, 255, 0.05);
+  color: rgba(0, 255, 255, 0.1);
   font-size: 20px;
 }
-
 
 /* ================= FIREWORKS ================= */
 #fireworks-container {
@@ -169,12 +136,8 @@ button:hover {
 
 /* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes explode {
@@ -191,7 +154,7 @@ button:hover {
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
   .year-transition {
-    font-size: 3.5rem;
+    font-size: 44px;
   }
 
   .greeting {
