@@ -1,17 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const countdown = document.getElementById("countdown");
-  const quote = document.getElementById("quote");
+  const quoteEl = document.getElementById("quote");
   const fullYearEl = document.getElementById("fullYear");
   const newYearText = document.getElementById("newYearText");
   const fireworksContainer = document.getElementById("fireworks-container");
   const bgMusic = document.getElementById("bgMusic");
   const startBtn = document.getElementById("startBtn");
-
-  startBtn.addEventListener("click", () => {
-    bgMusic.volume = 0.7;
-    bgMusic.play().catch(() => {});
-    startBtn.style.display = "none";
-  });
 
   const quotes = [
     "Cheers to a new year and another chance for us to get it right!",
@@ -34,58 +28,59 @@ document.addEventListener("DOMContentLoaded", () => {
     "Celebrate endings, for they precede new beginnings.",
     "Step into the New Year with confidence and courage.",
     "Every moment is a chance to begin again.",
-    "नया साल, नई उम्मीदें।",
-    "हर नया दिन एक नई शुरुआत है।",
-    "बीते कल को छोड़ो, आज को अपनाओ।",
-    "नया साल खुशियाँ लेकर आए।",
-    "हर साल खुद का बेहतर रूप बनो।",
-    "नई सोच, नई उड़ान।",
-    "सपनों को सच करने का साल है।",
-    "आज से बेहतर कल की शुरुआत।",
-    "आगे बढ़ो, डर को पीछे छोड़ो।",
-    "नई राहें, नए मौके।",
-    "हर पल को जी भर के जियो।",
-    "नया साल, नई ताकत।",
-    "खुद पर विश्वास रखो।",
-    "हर अंत एक नई शुरुआत है।",
-    "यह साल तुम्हारा हो।",
-    "New year, fresh vibes only.",
-    "Purana stress chhodo, aage badho.",
-    "Is saal khud pe focus karo.",
-    "New year, new energy.",
-    "Kal jo tha, rehne do.",
-    "Is year apna best version bano.",
-    "Sapne bade rakho, darr chhota.",
-    "Aaj se nayi shuruaat.",
-    "Smile zyada, tension kam.",
-    "Har din ek naya chance hai.",
-    "Is saal growth hi growth.",
-    "Positive socho, aage badho.",
-    "Khud ke liye time nikalo.",
-    "Let’s make this year memorable.",
-    "Apni journey pe proud bano.",
   ];
 
-  let lastQuoteIndex = -1;
+  const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  quoteEl.textContent = `"${selectedQuote}"`;
 
-  function changeQuoteSmoothly() {
-    quote.classList.add("fade-out");
-
-    setTimeout(() => {
-      let index;
-      do {
-        index = Math.floor(Math.random() * quotes.length);
-      } while (index === lastQuoteIndex);
-
-      lastQuoteIndex = index;
-      quote.textContent = quotes[index];
-      quote.classList.remove("fade-out");
-    }, 600);
+  function detectLang(text) {
+    return /[अ-ह]/.test(text) ? "hi-IN" : "en-US";
   }
 
-  changeQuoteSmoothly();
+  function getBestFemaleVoice(lang) {
+    const voices = speechSynthesis.getVoices();
+    return voices.find(
+      (v) =>
+        v.lang.startsWith(lang) &&
+        (v.name.toLowerCase().includes("female") ||
+          v.name.toLowerCase().includes("woman") ||
+          v.name.toLowerCase().includes("zira") ||
+          v.name.toLowerCase().includes("samantha"))
+    );
+  }
 
-  setInterval(changeQuoteSmoothly, 6000);
+  function speakHuman(text, lang) {
+    return new Promise((resolve) => {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = lang;
+      utter.rate = 0.85;
+      utter.pitch = 1.15;
+      utter.volume = 1;
+
+      const voice = getBestFemaleVoice(lang);
+      if (voice) utter.voice = voice;
+
+      utter.onend = resolve;
+      speechSynthesis.speak(utter);
+    });
+  }
+
+  startBtn.addEventListener("click", async () => {
+    startBtn.style.display = "none";
+    bgMusic.pause();
+    speechSynthesis.cancel();
+
+    if (!speechSynthesis.getVoices().length) {
+      await new Promise((r) => setTimeout(r, 300));
+    }
+
+    await speakHuman("Happy New Year", "en-US");
+    await new Promise((r) => setTimeout(r, 400));
+    await speakHuman(selectedQuote, detectLang(selectedQuote));
+
+    bgMusic.volume = 0.7;
+    bgMusic.play().catch(() => {});
+  });
 
   let currentYear = new Date().getFullYear();
   let targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
@@ -103,27 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
       fw.className = "firework";
       fw.style.left = Math.random() * 100 + "vw";
       fw.style.top = Math.random() * 100 + "vh";
-      fw.style.backgroundColor = randomColor();
       fireworksContainer.appendChild(fw);
       setTimeout(() => fw.remove(), 1500);
     }
   }
 
-  function randomColor() {
-    const colors = ["#ff007f", "#ff9900", "#00ccff", "#66ff66", "#ff3333"];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-
   setTimeout(() => launchFireworks(30), 800);
 
   function updateCountdown() {
-    const now = new Date();
-    let diff = targetDate - now;
+    const diff = targetDate - new Date();
 
     if (diff <= 0) {
       currentYear++;
       setYear(currentYear);
-      changeQuoteSmoothly();
       launchFireworks(80);
       targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
     }
