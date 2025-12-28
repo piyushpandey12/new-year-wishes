@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const countdown = document.getElementById("countdown");
   const quote = document.getElementById("quote");
-  const digit4 = document.getElementById("digit4");
-  const digit5 = document.getElementById("digit5");
+  const fullYearEl = document.getElementById("fullYear");
   const newYearText = document.getElementById("newYearText");
   const fireworksContainer = document.getElementById("fireworks-container");
   const bgMusic = document.getElementById("bgMusic");
@@ -21,16 +20,34 @@ document.addEventListener("DOMContentLoaded", () => {
     "The best is yet to come. Happy New Year!",
     "A new year is a fresh chapter in life. Make it count.",
     "Wishing you peace, love, and laughter in the new year!",
-    "May all your dreams come true in the next year!"
+    "May all your dreams come true in the next year!",
+    "New year. New dreams. New beginnings.",
+    "Every end is a new beginning. Welcome the New Year!",
+    "This year, be fearless in the pursuit of your dreams.",
+    "Leave the past behind and embrace the future.",
+    "A fresh start begins today.",
+    "May the coming year bring happiness and success.",
+    "Turn the page. A new story begins now.",
+    "Dream big. Start fresh. Shine brighter.",
+    "Let go of what was and welcome what will be.",
+    "New Year, new hopes, new opportunities.",
+    "Make this year unforgettable.",
+    "Your future starts now. Happy New Year!",
+    "Celebrate endings, for they precede new beginnings.",
+    "Step into the New Year with confidence and courage.",
+    "Every moment is a chance to begin again."
   ];
 
-  /* ================= DATE SETUP ================= */
+  /* ================= YEAR SETUP ================= */
   let currentYear = new Date().getFullYear();
   let targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
 
-  newYearText.textContent = currentYear;
-  digit4.textContent = Math.floor((currentYear % 100) / 10);
-  digit5.textContent = currentYear % 10;
+  function setYear(year) {
+    fullYearEl.textContent = year;
+    newYearText.textContent = year;
+  }
+
+  setYear(currentYear);
 
   /* ================= FIREWORKS ================= */
   function launchFireworks(count = 40) {
@@ -46,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function randomColor() {
-    return ["#ff007f", "#ff9900", "#00ccff", "#66ff66", "#ff3333"]
-      [Math.random() * 5 | 0];
+    const colors = ["#ff007f", "#ff9900", "#00ccff", "#66ff66", "#ff3333"];
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 
   setTimeout(() => launchFireworks(30), 800);
@@ -55,16 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ================= COUNTDOWN ================= */
   function updateCountdown() {
     const now = new Date();
-    const diff = targetDate - now;
+    let diff = targetDate - now;
 
     if (diff <= 0) {
       currentYear++;
-      newYearText.textContent = currentYear;
+      setYear(currentYear);
       quote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
       launchFireworks(80);
-
       targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
-      return;
+      diff = targetDate - now;
     }
 
     const d = Math.floor(diff / 86400000);
@@ -75,5 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
   }
 
+  updateCountdown();
   setInterval(updateCountdown, 1000);
 });

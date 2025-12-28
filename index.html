@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy New Year Countdown</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4">
+
 </head>
 
 <body>
 
-  <!-- 🔊 BACKGROUND MUSIC (USER INTERACTION REQUIRED) -->
+  <!-- 🔊 BACKGROUND MUSIC -->
   <audio id="bgMusic" loop preload="auto">
     <source src="/newyear.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ▶ START BUTTON (REQUIRED FOR VERCEL AUDIO) -->
+  <!-- ▶ START BUTTON -->
   <button id="startBtn">▶ Start Experience</button>
 
-  <!-- 🎥 Background Video -->
+  <!-- 🎥 BACKGROUND VIDEO -->
   <video id="bgVideo" autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4">
   </video>
@@ -25,29 +26,30 @@
   <div class="video-overlay"></div>
 
   <div class="container">
+
+    <!-- ⏳ COUNTDOWN -->
     <div class="countdown-wrapper">
       <p class="time-left-label">Time Left Until New Year:</p>
       <div id="countdown" class="countdown"></div>
     </div>
 
+    <!-- 🎯 FULL YEAR -->
     <div class="year-transition">
-      <span>202</span>
-      <div class="changing-digit">
-        <span id="digit4" class="digit up">4</span>
-        <span id="digit5" class="digit down">5</span>
-      </div>
+      <span id="fullYear"></span>
     </div>
 
+    <!-- 🎉 GREETING -->
     <h1 class="greeting">
-      🎉 Happy New Year <span id="newYearText">2025</span>! 🎉
+      🎉 Happy New Year <span id="newYearText"></span>! 🎉
     </h1>
 
+    <!-- 💬 QUOTE -->
     <p id="quote" class="new-year-quote">
       "Cheers to a new year and another chance for us to get it right!"
     </p>
+
   </div>
 
-  <!-- 🎆 FIREWORKS -->
   <div id="fireworks-container"></div>
 
   <script src="script.js"></script>
