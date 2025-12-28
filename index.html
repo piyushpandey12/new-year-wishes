@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,15 +11,15 @@
 
 <body>
 
-  <!-- 🔊 BACKGROUND MUSIC -->
+
   <audio id="bgMusic" loop preload="auto">
     <source src="/newyear.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ▶ START BUTTON -->
+
   <button id="startBtn">▶ Start Experience</button>
 
-  <!-- 🎥 BACKGROUND VIDEO -->
+
   <video id="bgVideo" autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4">
   </video>
@@ -27,23 +28,23 @@
 
   <div class="container">
 
-    <!-- ⏳ COUNTDOWN -->
+
     <div class="countdown-wrapper">
       <p class="time-left-label">Time Left Until New Year:</p>
       <div id="countdown" class="countdown"></div>
     </div>
 
-    <!-- 🎯 FULL YEAR -->
+
     <div class="year-transition">
       <span id="fullYear"></span>
     </div>
 
-    <!-- 🎉 GREETING -->
+
     <h1 class="greeting">
       🎉 Happy New Year <span id="newYearText"></span>! 🎉
     </h1>
     <br />
-    <!-- 💬 QUOTE -->
+
     <p id="quote" class="new-year-quote">
       "Cheers to a new year and another chance for us to get it right!"
     </p>
@@ -54,4 +55,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

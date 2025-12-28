@@ -7,14 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgMusic = document.getElementById("bgMusic");
   const startBtn = document.getElementById("startBtn");
 
-  /* ================= MUSIC (VERCEL SAFE) ================= */
   startBtn.addEventListener("click", () => {
     bgMusic.volume = 0.7;
     bgMusic.play().catch(() => {});
     startBtn.style.display = "none";
   });
 
-  /* ================= QUOTES ================= */
   const quotes = [
     "Cheers to a new year and another chance for us to get it right!",
     "The best is yet to come. Happy New Year!",
@@ -35,10 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Your future starts now. Happy New Year!",
     "Celebrate endings, for they precede new beginnings.",
     "Step into the New Year with confidence and courage.",
-    "Every moment is a chance to begin again."
+    "Every moment is a chance to begin again.",
   ];
 
-  /* ================= SMOOTH QUOTE ROTATION ================= */
   let lastQuoteIndex = -1;
 
   function changeQuoteSmoothly() {
@@ -56,13 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 600);
   }
 
-  // initial quote
   changeQuoteSmoothly();
 
-  // change every 6 seconds
   setInterval(changeQuoteSmoothly, 6000);
 
-  /* ================= YEAR SETUP ================= */
   let currentYear = new Date().getFullYear();
   let targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
 
@@ -73,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setYear(currentYear);
 
-  /* ================= FIREWORKS ================= */
   function launchFireworks(count = 40) {
     for (let i = 0; i < count; i++) {
       const fw = document.createElement("div");
@@ -93,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => launchFireworks(30), 800);
 
-  /* ================= COUNTDOWN ================= */
   function updateCountdown() {
     const now = new Date();
     let diff = targetDate - now;
@@ -101,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diff <= 0) {
       currentYear++;
       setYear(currentYear);
-      changeQuoteSmoothly(); // 🎆 midnight quote change
+      changeQuoteSmoothly();
       launchFireworks(80);
       targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
     }

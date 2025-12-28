@@ -1,25 +1,22 @@
-/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ================= GLOBAL ================= */
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
 }
 
-/* ================= BODY ================= */
 body {
   font-family: monospace;
   color: white;
   overflow: hidden;
 }
 
-/* ================= BACKGROUND VIDEO ================= */
 #bgVideo {
   position: fixed;
   inset: 0;
@@ -29,7 +26,6 @@ body {
   z-index: -3;
 }
 
-/* ================= VIDEO OVERLAY ================= */
 .video-overlay {
   position: fixed;
   inset: 0;
@@ -37,7 +33,6 @@ body {
   z-index: -2;
 }
 
-/* ================= MAIN CONTAINER ================= */
 .container {
   position: relative;
   z-index: 5;
@@ -50,7 +45,6 @@ body {
   text-align: center;
 }
 
-/* ================= COUNTDOWN ================= */
 .countdown-wrapper {
   margin-bottom: 20px;
 }
@@ -66,7 +60,6 @@ body {
   font-weight: bold;
 }
 
-/* ================= YEAR DISPLAY ================= */
 .year-transition {
   display: flex;
   justify-content: center;
@@ -85,26 +78,23 @@ body {
   letter-spacing: 0.12em;
 }
 
-/* ================= TEXT ================= */
 .greeting {
   font-size: 2.5rem;
   opacity: 0;
   animation: fadeIn 2.5s ease-in-out forwards 1.5s;
 }
 
-/* 🔥 QUOTE (MERGED + FIXED) */
 .new-year-quote {
   font-size: 1.5rem;
   font-style: italic;
   margin-bottom: 20px;
-  transition: opacity 0.6s ease; /* ✅ fade works */
+  transition: opacity 0.6s ease;
 }
 
 .new-year-quote.fade-out {
   opacity: 0;
 }
 
-/* ================= START BUTTON ================= */
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -120,7 +110,6 @@ button:hover {
   background-color: #ff4da6;
 }
 
-/* ================= FULL SCREEN TAP LAYER ================= */
 #startBtn {
   position: fixed;
   inset: 0;
@@ -140,7 +129,6 @@ button:hover {
   font-size: 20px;
 }
 
-/* ================= FIREWORKS ================= */
 #fireworks-container {
   position: fixed;
   inset: 0;
@@ -158,10 +146,13 @@ button:hover {
   animation: explode 1.5s ease-in-out forwards;
 }
 
-/* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes explode {
@@ -175,7 +166,6 @@ button:hover {
   }
 }
 
-/* ================= MOBILE ================= */
 @media (max-width: 600px) {
   .year-transition {
     font-size: 44px;
