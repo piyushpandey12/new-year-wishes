@@ -14,7 +14,7 @@ html, body {
 
 /* ================= BODY ================= */
 body {
-  font-family: monospace; /* ✅ single font (no override) */
+  font-family: monospace; /* stable across Vercel */
   color: white;
   overflow: hidden;
 }
@@ -66,7 +66,7 @@ body {
   font-weight: bold;
 }
 
-/* ================= YEAR DISPLAY (VERCEL FIXED) ================= */
+/* ================= YEAR DISPLAY (FINAL FIX) ================= */
 .year-transition {
   display: flex;
   justify-content: center;
@@ -74,17 +74,17 @@ body {
 
   font-size: 64px;
   font-weight: bold;
-  letter-spacing: 6px;
   margin: 20px 0;
 
-  white-space: nowrap;   /* 🔥 prevents wrapping */
-  flex-wrap: nowrap;     /* 🔥 Vercel production fix */
+  white-space: nowrap;   /* no wrapping */
+  flex-wrap: nowrap;
   overflow: hidden;
 }
 
 #fullYear {
   display: inline-block;
-  min-width: max-content; /* 🔥 critical */
+  min-width: max-content;
+  letter-spacing: 0.12em;   /* ✅ PERFECT spacing across OS */
 }
 
 /* ================= TEXT ================= */
