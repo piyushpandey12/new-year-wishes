@@ -14,7 +14,7 @@ html, body {
 
 /* ================= BODY ================= */
 body {
-  font-family: monospace; /* stable across Vercel */
+  font-family: monospace;
   color: white;
   overflow: hidden;
 }
@@ -66,17 +66,15 @@ body {
   font-weight: bold;
 }
 
-/* ================= YEAR DISPLAY (FINAL FIX) ================= */
+/* ================= YEAR DISPLAY ================= */
 .year-transition {
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 64px;
   font-weight: bold;
   margin: 20px 0;
-
-  white-space: nowrap;   /* no wrapping */
+  white-space: nowrap;
   flex-wrap: nowrap;
   overflow: hidden;
 }
@@ -84,7 +82,7 @@ body {
 #fullYear {
   display: inline-block;
   min-width: max-content;
-  letter-spacing: 0.12em;   /* ✅ PERFECT spacing across OS */
+  letter-spacing: 0.12em;
 }
 
 /* ================= TEXT ================= */
@@ -94,10 +92,16 @@ body {
   animation: fadeIn 2.5s ease-in-out forwards 1.5s;
 }
 
+/* 🔥 QUOTE (MERGED + FIXED) */
 .new-year-quote {
   font-size: 1.5rem;
   font-style: italic;
   margin-bottom: 20px;
+  transition: opacity 0.6s ease; /* ✅ fade works */
+}
+
+.new-year-quote.fade-out {
+  opacity: 0;
 }
 
 /* ================= START BUTTON ================= */

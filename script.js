@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ================= MUSIC (VERCEL SAFE) ================= */
   startBtn.addEventListener("click", () => {
     bgMusic.volume = 0.7;
-    bgMusic.play().catch(err => console.log("Audio error:", err));
+    bgMusic.play().catch(() => {});
     startBtn.style.display = "none";
   });
 
@@ -37,6 +37,30 @@ document.addEventListener("DOMContentLoaded", () => {
     "Step into the New Year with confidence and courage.",
     "Every moment is a chance to begin again."
   ];
+
+  /* ================= SMOOTH QUOTE ROTATION ================= */
+  let lastQuoteIndex = -1;
+
+  function changeQuoteSmoothly() {
+    quote.classList.add("fade-out");
+
+    setTimeout(() => {
+      let index;
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (index === lastQuoteIndex);
+
+      lastQuoteIndex = index;
+      quote.textContent = quotes[index];
+      quote.classList.remove("fade-out");
+    }, 600);
+  }
+
+  // initial quote
+  changeQuoteSmoothly();
+
+  // change every 6 seconds
+  setInterval(changeQuoteSmoothly, 6000);
 
   /* ================= YEAR SETUP ================= */
   let currentYear = new Date().getFullYear();
@@ -77,10 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diff <= 0) {
       currentYear++;
       setYear(currentYear);
-      quote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+      changeQuoteSmoothly(); // 🎆 midnight quote change
       launchFireworks(80);
       targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
-      diff = targetDate - now;
     }
 
     const d = Math.floor(diff / 86400000);
