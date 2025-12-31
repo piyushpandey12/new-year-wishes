@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const fireworksContainer = document.getElementById("fireworks-container");
   const bgMusic = document.getElementById("bgMusic");
   const startBtn = document.getElementById("startBtn");
+  const tapIndicator = document.querySelector(".tap-indicator");
+
+  // Ensure voices load (Chrome fix)
+  speechSynthesis.onvoiceschanged = () => {};
 
   const quotes = [
     "Cheers to a new year and another chance for us to get it right!",
@@ -27,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Your future starts now. Happy New Year!",
     "Celebrate endings, for they precede new beginnings.",
     "Step into the New Year with confidence and courage.",
-    "Every moment is a chance to begin again.",
+    "Every moment is a chance to begin again."
   ];
 
   const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -39,18 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getBestFemaleVoice(lang) {
     const voices = speechSynthesis.getVoices();
-    return voices.find(
-      (v) =>
-        v.lang.startsWith(lang) &&
-        (v.name.toLowerCase().includes("female") ||
-          v.name.toLowerCase().includes("woman") ||
-          v.name.toLowerCase().includes("zira") ||
-          v.name.toLowerCase().includes("samantha"))
+    return voices.find(v =>
+      v.lang.startsWith(lang) &&
+      (v.name.toLowerCase().includes("female") ||
+       v.name.toLowerCase().includes("woman") ||
+       v.name.toLowerCase().includes("zira") ||
+       v.name.toLowerCase().includes("samantha"))
     );
   }
 
   function speakHuman(text, lang) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = lang;
       utter.rate = 0.85;
@@ -65,23 +68,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* ================= START EXPERIENCE ================= */
   startBtn.addEventListener("click", async () => {
+
+    // ✅ Hide TAP ANYWHERE indicator
+    if (tapIndicator) tapIndicator.classList.add("hide");
+
     startBtn.style.display = "none";
-    bgMusic.pause();
     speechSynthesis.cancel();
 
+    bgMusic.volume = 0.2;
+    bgMusic.play().catch(() => {});
+
     if (!speechSynthesis.getVoices().length) {
-      await new Promise((r) => setTimeout(r, 300));
+      await new Promise(r => setTimeout(r, 300));
     }
 
     await speakHuman("Happy New Year", "en-US");
-    await new Promise((r) => setTimeout(r, 400));
+    await new Promise(r => setTimeout(r, 400));
     await speakHuman(selectedQuote, detectLang(selectedQuote));
 
-    bgMusic.volume = 0.7;
-    bgMusic.play().catch(() => {});
+    // 🔊 Smooth volume increase
+    let vol = 0.2;
+    const fade = setInterval(() => {
+      vol += 0.05;
+      bgMusic.volume = Math.min(vol, 0.7);
+      if (vol >= 0.7) clearInterval(fade);
+    }, 120);
   });
 
+  /* ================= YEAR & COUNTDOWN ================= */
   let currentYear = new Date().getFullYear();
   let targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
 
@@ -113,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setYear(currentYear);
       launchFireworks(80);
       targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
+      return;
     }
 
     const d = Math.floor(diff / 86400000);
