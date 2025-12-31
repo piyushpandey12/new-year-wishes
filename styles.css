@@ -1,4 +1,3 @@
-/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +16,6 @@ body {
   overflow: hidden;
 }
 
-/* ================= BACKGROUND VIDEO ================= */
 #bgVideo {
   position: fixed;
   inset: 0;
@@ -34,7 +32,6 @@ body {
   z-index: -2;
 }
 
-/* ================= MAIN CONTAINER ================= */
 .container {
   position: relative;
   z-index: 5;
@@ -47,7 +44,6 @@ body {
   text-align: center;
 }
 
-/* ================= COUNTDOWN ================= */
 .countdown-wrapper {
   margin-bottom: 20px;
 }
@@ -63,7 +59,6 @@ body {
   font-weight: bold;
 }
 
-/* ================= YEAR DISPLAY ================= */
 .year-transition {
   display: flex;
   justify-content: center;
@@ -81,7 +76,6 @@ body {
   letter-spacing: 0.12em;
 }
 
-/* ================= TEXT ================= */
 .greeting {
   font-size: 2.5rem;
   opacity: 0;
@@ -99,9 +93,8 @@ body {
   opacity: 0;
 }
 
-/* ================= TAP ANYWHERE INDICATOR ================= */
 .tap-indicator {
-  margin-top: 60px;                /* 2–3 inches below quote */
+  margin-top: 60px;
   padding: 14px 34px;
   border-radius: 40px;
   font-size: 16px;
@@ -111,16 +104,15 @@ body {
   background: rgba(0, 0, 0, 0.35);
   box-shadow: 0 0 25px rgba(241, 196, 15, 0.6);
   animation: glowPulse 1.8s infinite ease-in-out;
-  pointer-events: none;            /* visual only */
+  pointer-events: none;
 }
+
 .tap-indicator.hide {
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-
-/* ================= INVISIBLE START BUTTON ================= */
 #startBtn {
   position: fixed;
   inset: 0;
@@ -128,10 +120,9 @@ body {
   border: none;
   cursor: pointer;
   z-index: 9999;
-  opacity: 0;                      /* fully invisible */
+  opacity: 0;
 }
 
-/* ================= FIREWORKS ================= */
 #fireworks-container {
   position: fixed;
   inset: 0;
@@ -149,7 +140,6 @@ body {
   animation: explode 1.5s ease-in-out forwards;
 }
 
-/* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -167,12 +157,11 @@ body {
 }
 
 @keyframes glowPulse {
-  0%   { box-shadow: 0 0 15px rgba(241,196,15,0.4); }
-  50%  { box-shadow: 0 0 35px rgba(241,196,15,0.9); }
+  0% { box-shadow: 0 0 15px rgba(241,196,15,0.4); }
+  50% { box-shadow: 0 0 35px rgba(241,196,15,0.9); }
   100% { box-shadow: 0 0 15px rgba(241,196,15,0.4); }
 }
 
-/* ================= MOBILE ================= */
 @media (max-width: 600px) {
   .year-transition {
     font-size: 44px;

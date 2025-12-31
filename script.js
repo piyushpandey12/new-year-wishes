@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startBtn");
   const tapIndicator = document.querySelector(".tap-indicator");
 
-  // Ensure voices load (Chrome fix)
+  
   speechSynthesis.onvoiceschanged = () => {};
 
   const quotes = [
@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ================= START EXPERIENCE ================= */
+
   startBtn.addEventListener("click", async () => {
 
-    // ✅ Hide TAP ANYWHERE indicator
+  
     if (tapIndicator) tapIndicator.classList.add("hide");
 
     startBtn.style.display = "none";
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     await new Promise(r => setTimeout(r, 400));
     await speakHuman(selectedQuote, detectLang(selectedQuote));
 
-    // 🔊 Smooth volume increase
+   
     let vol = 0.2;
     const fade = setInterval(() => {
       vol += 0.05;
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 120);
   });
 
-  /* ================= YEAR & COUNTDOWN ================= */
+
   let currentYear = new Date().getFullYear();
   let targetDate = new Date(`${currentYear + 1}-01-01T00:00:00`);
 
